@@ -23,16 +23,30 @@ section{
     gap: 0.3em;
 }
 .game-cell{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
     width: 5em;
     height: 5em;
     background: #2b2b2b;
     border-radius: 0.5em;
     cursor: pointer;
     transition: 0.5s;
+    font-size: 1.5rem;
+    color: aliceblue;
+}
+.game-cell:not(.selected):hover{
+    background: #2b2b2b60;
 }
 footer{
     text-align: center;
 }
-button{
-    margin-top: 0.5em;
+.game-reset{
+    margin-top: 1em;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 1em;
+    background: #4d0303;
+    color: aliceblue;
+    cursor: pointer;
 }
