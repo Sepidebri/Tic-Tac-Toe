@@ -4,16 +4,22 @@ const gameContainer = document.querySelector(".game-container");
 const gameStatus = document.querySelector(".game-status");
 
 let turnWord = "X";
+let positionStatus = ["", "", "", "", "", "", "", "", ""];
 
 resetButton.addEventListener("click", resetGame);
-
 cells.map((cell) => {
-  cell.addEventListener("click", () => {
-    cell.innerText = turnWord;
-    cell.classList.add("selected");
-    changeTurn();
-  });
+  cell.addEventListener("click", cellHandler);
 });
+
+function cellHandler() {
+  const indexCell = parseInt(this.getAttribute("data-id"));
+  if (!positionStatus[indexCell]) {
+    this.innerText = turnWord;
+    this.classList.add("selected");
+    positionStatus[indexCell] = turnWord;
+    changeTurn();
+  }
+}
 function changeTurn() {
   turnWord = turnWord === "X" ? "O" : "X";
   gameStatus.innerText = `It's ${turnWord}'s Turn`;
@@ -21,5 +27,9 @@ function changeTurn() {
 function resetGame() {
   cells.map((cell) => {
     cell.innerText = "";
+    cell.classList.remove("selected");
   });
+  positionStatus = ["", "", "", "", "", "", "", "", ""];
+  turnWord = "X";
+  gameStatus.innerText = `It's ${turnWord}'s Turn`;
 }
